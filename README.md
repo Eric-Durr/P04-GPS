@@ -35,6 +35,12 @@ También se puede ejecutar un despliegue detallado de los tests si ya se ha lanz
 $ ./ca_gps_test -s
 ```
 
+## Referencias
+
+- [LFSR code example (COS 126) - Princeton University Computer Sience Department](https://www.cs.princeton.edu/courses/archive/fall11/cos126/assignments/lfsr.html)
+
+- [C/A - Code Generator](https://es.mathworks.com/matlabcentral/fileexchange/14670-gps-c-a-code-generator)
+
 ## Licencia
 
 [MIT](https://choosealicense.com/licenses/mit/)
