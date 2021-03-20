@@ -43,6 +43,7 @@ $ ./ca_gps_test -s
 
 - [C/A - Code Generator](https://es.mathworks.com/matlabcentral/fileexchange/14670-gps-c-a-code-generator)
 - [C/A - Code Generator 2](https://github.com/N1ckn1ght/cagenerator/blob/main/Source.cpp)
+- [C/A - Code Generator 3 (explained step by step)](https://www.beechwood.eu/ca-code-gps-generator/)
 
 ## Licencia
 
