@@ -1,6 +1,8 @@
 #include <vector>
 #include <string>
 
+#define LINE 120
+
 /* This enum is used to select the Satellite ID */
 enum taps_num
 {
@@ -75,7 +77,7 @@ const std::vector<std::pair<int, int>>
         {4, 9},
     });
 
-/* The method to string outputs a vector of integers  */
+/* Transforms a vector of integers into a string value */
 std::string to_string(const std::vector<int> &secuence)
 {
   std::string output = "";
@@ -85,6 +87,8 @@ std::string to_string(const std::vector<int> &secuence)
   return output;
 }
 
+/* Rotates the elements in a vector to the Right and 
+   inserts a new value */
 void rotate_elements(std::vector<int> &secuence, int feedback)
 {
   for (unsigned int i = secuence.size() - 1; i > 0; --i)
@@ -92,6 +96,8 @@ void rotate_elements(std::vector<int> &secuence, int feedback)
   secuence[0] = feedback;
 }
 
+/* Transforms in one step the first Gold secuence and 
+   returns the 10th number after rotation*/
 int step_g1(std::vector<int> &secuence)
 {
   int feedback = secuence[2] ^ secuence[9];
@@ -100,6 +106,7 @@ int step_g1(std::vector<int> &secuence)
   return last;
 }
 
+/* Transforms in one step the second Gold secuence */
 void step_g2(std::vector<int> &secuence)
 {
   int feedback = secuence[1] ^ secuence[2] ^ secuence[5] ^
@@ -107,6 +114,9 @@ void step_g2(std::vector<int> &secuence)
   rotate_elements(secuence, feedback);
 }
 
+/* Computes one unique digit of the C/A code depending
+   on the satellite ID tap selected and the 10th digit 
+   returned by one LFSR operation */
 int ca_digit(const int &g1,
              const std::vector<int> &g2,
              std::pair<int, int> &taps)
@@ -114,16 +124,46 @@ int ca_digit(const int &g1,
   return g1 ^ g2[taps.first - 1] ^ g2[taps.second - 1];
 }
 
+/* Generates the specified amoount of steps in the 
+   C/A GPS generator */
+/* When the number of steps arent specified it generates 
+   the full code.*/
 std::vector<int> generate(std::vector<int> &g1,
                           std::vector<int> &g2,
                           std::pair<int, int> tap,
-                          const int &times)
+                          const int &times = 1023,
+                          bool snitch = false)
 {
   std::vector<int> result;
+  if (snitch)
+  {
+    std::cout << "\t-LFSR1-\t\t-FB-\t\t-O-\t\t|\t-LFSR2-\t\t-FB-\t\t|\tC/A GPS bit: \n";
+    for (int i = 0; i < LINE; ++i)
+      std::cout << "-";
+    std::cout << "\n";
+  }
+  
   for (int i = 0; i < times; ++i)
   {
-    result.push_back(ca_digit(step_g1(g1), g2, tap));
+    if (snitch)
+    {
+      std::cout << "\t" << to_string(g1);
+    }
+
+    int last = step_g1(g1);
+
+    if (snitch)
+    {
+      std::cout << "\t " << g1[0] << "\t\t " << last << "\t\t|\t" << to_string(g2);
+    }
+
+    result.push_back(ca_digit(last, g2, tap));
     step_g2(g2);
+
+    if (snitch)
+    {
+      std::cout << "\t " << g2[0] << "\t\t|\t" << result.back() << "\n";
+    }
   }
   return result;
 }
