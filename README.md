@@ -39,7 +39,10 @@ $ ./ca_gps_test -s
 
 - [LFSR code example (COS 126) - Princeton University Computer Sience Department](https://www.cs.princeton.edu/courses/archive/fall11/cos126/assignments/lfsr.html)
 
+- [LFSR in c++](https://github.com/yyildiz/LFSR-Image-Encoder-Decoder/blob/master/LFSR.cpp)
+
 - [C/A - Code Generator](https://es.mathworks.com/matlabcentral/fileexchange/14670-gps-c-a-code-generator)
+- [C/A - Code Generator 2](https://github.com/N1ckn1ght/cagenerator/blob/main/Source.cpp)
 
 ## Licencia
 
