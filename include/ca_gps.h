@@ -137,12 +137,12 @@ std::vector<int> generate(std::vector<int> &g1,
   std::vector<int> result;
   if (snitch)
   {
-    std::cout << "\t-LFSR1-\t\t-FB-\t\t-O-\t\t|\t-LFSR2-\t\t-FB-\t\t|\tC/A GPS bit: \n";
+    std::cout << "\t-LFSR1-\t\t-FB-\t\t-10th bit-\t|\t-LFSR2-\t\t-FB-\t\t|\tC/A GPS bit: \n";
     for (int i = 0; i < LINE; ++i)
       std::cout << "-";
     std::cout << "\n";
   }
-  
+
   for (int i = 0; i < times; ++i)
   {
     if (snitch)
